@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: azure;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            margin: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: azure;
+        }
+
+        form {
+            width: 500px;
+            background-color: rgb(123, 43, 96);
+            padding: 20px;
+            border-radius: 10%;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        label {
+            color: aliceblue;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 5px;
+            border-radius: 5px;
+            text-align: center;
+            border: none;
+            box-shadow: 0 0 5px rgb(244, 177, 7) inset;
+            background-color: rgb(218, 193, 193);
+            color: rgb(16, 19, 22);
+        }
+
+        textarea {
+            width: 100%;
+            border-radius: 5px;
+            background-color: rgb(218, 193, 193);
+            box-shadow: 0 0 5px rgb(244, 177, 7) inset;
+        }
+
+        input[type="radio"] {
+            width: auto;
+            margin: 0 5px;
+        }
+
+        button {
+            background-color: rgb(173, 136, 49);
+            width: 100px;
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            display: block;
+            margin: 20px auto;
+        }
+
+        input[type="submit"]:hover {
+            background-color: rgb(131, 91, 31);
+        }
+
+        input[type="submit"] {
+            width: 100px;
+            margin-left: 40%;
+            margin-top: 30px;
+            background-color: rgb(222, 165, 21);
+            border: none;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <form id="registrationForm" action="submit.php" method="POST">
+        <h2>Registration Form</h2>
+        <table>
+            <tr>
+                <td><label for="full_name">Full name:</label></td>
+                <td><input type="text" id="full_name" name="full_name" placeholder="Enter your full name" required></td>
+            </tr>
+            <tr>
+                <td><label for="email">Email:</label></td>
+                <td><input type="email" id="email" name="email" placeholder="Enter your email" required></td>
+            </tr>
+            <tr>
+                <td><label for="number">Phone number:</label></td>
+                <td><input type="tel" id="number" name="phone_number" placeholder="Enter your phone number" required></td>
+            </tr>
+            <tr>
+                <td><label for="password">Password:</label></td>
+                <td><input type="password" id="password" name="password" placeholder="Enter your password" required></td>
+            </tr>
+            <tr>
+                <td><label for="confirm">Confirm password:</label></td>
+                <td><input type="password" id="confirm" name="confirm_password" placeholder="Confirm password" required></td>
+            </tr>
+            <tr>
+                <td><label for="gender">Gender:</label></td>
+                <td>
+                    <input type="radio" name="gender" id="male" value="male"><label for="male">Male</label>
+                    <input type="radio" name="gender" id="female" value="female"><label for="female">Female</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="address">Address:</label></td>
+                <td><textarea id="address" name="address" rows="3" required></textarea></td>
+            </tr>
+        </table>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+<script>
+    document.getElementById("registrationForm").addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent default form submission
+
+        const fullName = document.getElementById("full_name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const phone = document.getElementById("number").value.trim();
+        const password = document.getElementById("password").value.trim();
+        const confirmPassword = document.getElementById("confirm").value.trim();
+        const gender = document.querySelector('input[name="gender"]:checked')?.value;
+        const address = document.getElementById("address").value.trim();
+
+        // Basic validation
+        if (!fullName || !email || !phone || !password || !confirmPassword || !gender || !address) {
+            alert("All fields are required!");
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            alert("Passwords do not match!");
+            return;
+        }
+
+        alert("Registration Successfully!"); // Replace with AJAX or form submission
+        this.submit(); // Allow form submission
+    });
+</script>
+</body>
+</html>
